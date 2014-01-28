@@ -1,0 +1,32 @@
+<rom>
+  <romid>
+    <xmlid>A4SGE01C</xmlid>
+    <internalidaddress>200</internalidaddress>
+    <internalidstring>A4SGE01C</internalidstring>
+    <ecuid>1B14400805</ecuid>
+    <year>02</year>
+    <market>USDM</market>
+    <make>Subaru</make>
+    <model>Impreza</model>
+    <submodel>WRX</submodel>
+    <transmission>MT/AT</transmission>
+    <memmodel>68HC16Y5</memmodel>
+    <flashmethod>wrx02</flashmethod>
+  </romid>
+  <include>A4SGD10C</include>
+  <table name="Force Pass Readiness Monitors" address="1e6d4" />
+  <scaling name="TGVCELFix(P1094,P1095,P1096,P1097)" storagetype="bloblist">
+    <data name="enabled" value="274C274C" />
+    <data name="disabled" value="FA01CCDC" />
+  </scaling>
+  <table name="TGV CEL Fix (P1094, P1095, P1096, P1097)" address="b56" scaling="TGVCELFix(P1094,P1095,P1096,P1097)" />
+  <table name="Misfire CEL Fix (P0301, P0302, P0303, P0304)" address="2d1c6" />
+  <scaling name="LCRPM" units="Engine Speed (RPM)" toexpr="x*.1953125" frexpr="x/.1953125" format="%.0f" min="0" max="12000" inc="50" storagetype="uint16" endian="big"/>
+  <scaling name="LCSPEED(KMH)" units="Vehicle Speed (KMH)" toexpr="x" frexpr="x" format="%.0f" min="0" max="100" inc="1" storagetype="uint8" endian="big"/>
+  <scaling name="LCSPEED(MPH)" units="Vehicle Speed (MPH)" toexpr="x*.621" frexpr="x/.621" format="%.0f" min="0" max="100" inc="1" storagetype="uint8" endian="big"/>
+  
+	<table name="LC disable speed(KMH)threshold" category="tinywrex patches" address="2D2D0" type="1D" level="1" scaling="LCSPEED(KMH)"/>
+	<table name="LC disable speed(MPH)threshold" category="tinywrex patches" address="2D2D0" type="1D" level="1" scaling="LCSPEED(MPH)"/>
+	<table name="LC RPM delta" category="tinywrex patches" address="2D2D2" type="1D" level="1" scaling="LCRPM"/>
+
+</rom>
